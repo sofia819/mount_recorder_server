@@ -30,7 +30,7 @@ CREATE TABLE user_mounts (
 
 INSERT INTO mounts (mount_name) VALUES ('E4S'), ('E8S');
 INSERT INTO users (username) VALUES ('User Name');
-INSERT INTO user_mounts (user_id, mount_id) VALUES (1, 1) WHERE NOT EXISTS (SELECT username FROM users);
+INSERT INTO user_mounts (user_id, mount_id) VALUES (1, 1);
 
 SELECT * FROM mounts;
 SELECT * FROM users;
