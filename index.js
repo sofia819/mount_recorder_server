@@ -1,3 +1,4 @@
+const dotenv = require("dotenv").config();
 const express = require("express"); //Express server created
 const app = express(); //Express server ran as "app"
 const cors = require("cors"); //server requires cors
