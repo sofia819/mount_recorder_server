@@ -40,7 +40,7 @@ router
     const { id } = req.params;
     mountsServices
       .deleteMountById(id)
-      .then((mounts) => res.json(mounts.rowCount))
+      .then(() => res.json(true))
       .catch((err) => {
         console.error(err.message);
         res.json(false);
