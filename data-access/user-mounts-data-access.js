@@ -48,7 +48,7 @@ const updateUserMountsById = async (userId, mountIds) => {
   await pool.none(
     `
       DELETE FROM user_mounts
-      WHERE user_id = 12 AND
+      WHERE user_id = $1 AND
       mount_id NOT IN ($2:list)
     `,
     [userId, mountIds]

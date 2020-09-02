@@ -16,8 +16,10 @@ const updateUserById = async (username, id) =>
     id,
   ]);
 
-const deleteUserById = async (id) =>
-  await pool.result("DELETE FROM users WHERE user_id = $1", [id]);
+const deleteUserById = async (id) => {
+  await pool.none("DELETE FROM user_mounts WHERE user_id = $1", [id]);
+  await pool.none("DELETE FROM users WHERE user_id = $1", [id]);
+};
 
 module.exports = {
   getAllUsers,

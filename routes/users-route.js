@@ -40,7 +40,7 @@ router
     const { id } = req.params;
     usersService
       .deleteUserById(id)
-      .then((users) => res.json(users.rowCount))
+      .then(() => res.json(true))
       .catch((err) => {
         console.error(err.message);
         res.json(false);
