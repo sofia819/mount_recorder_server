@@ -36,9 +36,8 @@ SELECT * FROM mounts;
 SELECT * FROM users;
 SELECT * FROM user_mounts;
 
-SELECT um.user_id, u.username, um.mount_id, m.mount_name
-	FROM user_mounts um
-JOIN users u
-	ON um.user_id = u.user_id
-RIGHT JOIN mounts m
-	ON um.mount_id = m.mount_id;
+SELECT u.user_id, u.username, m.mount_id, m.mount_name, u.user_id = um.user_id AS owned
+FROM users u
+CROSS JOIN mounts m
+LEFT JOIN user_mounts um
+	ON u.user_id = um.user_id AND m.mount_id = um.mount_id;

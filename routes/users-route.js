@@ -7,15 +7,21 @@ router
   .get((req, res) =>
     usersService
       .getAllUsers()
-      .then((allUsers) => res.json(allUsers.rows))
-      .catch((err) => console.error(err.message))
+      .then((allUsers) => res.json(allUsers))
+      .catch((err) => {
+        console.error(err.message);
+        res.json(false);
+      })
   )
   .post((req, res) => {
     const { username } = req.body;
     usersService
       .createUser(username)
-      .then((newUser) => res.json(newUser.rows[0]))
-      .catch((err) => console.error(err.message));
+      .then((newUser) => res.json(newUser[0]))
+      .catch((err) => {
+        console.error(err.message);
+        res.json(false);
+      });
   });
 
 router
@@ -24,15 +30,21 @@ router
     const { id } = req.params;
     usersService
       .getUserById(id)
-      .then((user) => res.json(user.rows[0]))
-      .catch((err) => console.error(err.message));
+      .then((user) => res.json(user[0]))
+      .catch((err) => {
+        console.error(err.message);
+        res.json(false);
+      });
   })
   .delete((req, res) => {
     const { id } = req.params;
     usersService
       .deleteUserById(id)
       .then((users) => res.json(users.rowCount))
-      .catch((err) => console.error(err.message));
+      .catch((err) => {
+        console.error(err.message);
+        res.json(false);
+      });
   })
   .put((req, res) => {
     const { id } = req.params;
@@ -40,7 +52,10 @@ router
     usersService
       .updateUserById(username, id)
       .then((users) => res.json(users.rowCount))
-      .catch((err) => console.error(err.message));
+      .catch((err) => {
+        console.error(err.message);
+        res.json(false);
+      });
   });
 
 module.exports = router;

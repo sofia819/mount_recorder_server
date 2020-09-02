@@ -11,13 +11,13 @@ const createUser = async (username) =>
   ]);
 
 const updateUserById = async (username, id) =>
-  await pool.query("UPDATE users SET username = $1 WHERE user_id = $2", [
+  await pool.result("UPDATE users SET username = $1 WHERE user_id = $2", [
     username,
     id,
   ]);
 
 const deleteUserById = async (id) =>
-  await pool.query("DELETE FROM users WHERE user_id = $1", [id]);
+  await pool.result("DELETE FROM users WHERE user_id = $1", [id]);
 
 module.exports = {
   getAllUsers,
