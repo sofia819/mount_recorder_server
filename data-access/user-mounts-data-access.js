@@ -28,31 +28,41 @@ const getUserMountsById = async (id) =>
 const updateUserMountsById = async (userId, mountIds) => {
   // our set of columns, to be created only once (statically), and then reused,
   // to let it cache up its formatting templates for high performance:
-  const cs = new pgp.helpers.ColumnSet(["user_id", "mount_id"], {
-    table: "user_mounts",
-  });
+  if (mountIds.length > 0) {
+    const cs = new pgp.helpers.ColumnSet(["user_id", "mount_id"], {
+      table: "user_mounts",
+    });
 
-  // data input values:
-  const values = mountIds.map((mountId) => {
-    return { user_id: userId, mount_id: mountId };
-  });
+    // data input values:
+    const values = mountIds.map((mountId) => {
+      return { user_id: userId, mount_id: mountId };
+    });
 
-  // generating a multi-row insert query:
-  const query =
-    pgp.helpers.insert(values, cs) +
-    " ON CONFLICT(user_id, mount_id) DO NOTHING";
+    // generating a multi-row insert query:
+    const query =
+      pgp.helpers.insert(values, cs) +
+      " ON CONFLICT(user_id, mount_id) DO NOTHING";
 
-  // executing the query:
-  await pool.none(query);
+    // executing the query:
+    await pool.none(query);
 
-  await pool.none(
-    `
+    await pool.none(
+      `
       DELETE FROM user_mounts
       WHERE user_id = $1 AND
       mount_id NOT IN ($2:list)
     `,
-    [userId, mountIds]
-  );
+      [userId, mountIds]
+    );
+  } else {
+    await pool.none(
+      `
+        DELETE FROM user_mounts
+        WHERE user_id = $1
+      `,
+      [userId]
+    );
+  }
 };
 
 module.exports = {
