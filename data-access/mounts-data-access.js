@@ -17,8 +17,12 @@ const updateMountById = async (mountName, id) =>
   ]);
 
 const deleteMountById = async (id) => {
-  await pool.none("DELETE FROM user_mounts WHERE mount_id = $1", [id]);
-  await pool.none("DELETE FROM mounts WHERE mount_id = $1", [id]);
+  await pool
+    .none("DELETE FROM user_mounts WHERE mount_id = $1", [id])
+    .then(
+      async () =>
+        await pool.none("DELETE FROM mounts WHERE mount_id = $1", [id])
+    );
 };
 
 module.exports = {
