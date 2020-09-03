@@ -28,8 +28,13 @@ CREATE TABLE user_mounts (
 	CONSTRAINT fk_mount FOREIGN KEY(mount_id) REFERENCES mounts(mount_id)
 );
 
-INSERT INTO mounts (mount_name) VALUES ('E4S'), ('E8S');
-INSERT INTO users (username) VALUES ('User Name');
+INSERT INTO mounts (mount_name) VALUES ('Nightmare'), ('Garuda'), ('Titan'), ('Ifrit'), ('Leviathan'), ('Ramuh'), ('Shiva'),
+									   ('Bismarck'), ('Ravana'), ('Thordan'), ('Nidhogg'), ('Sephirot'), ('Sophia'), ('Zurvan'),
+									   ('Susano'), ('Lakshmi'), ('Shinryu'), ('Tsukuyomi'), ('Byakko'), ('Suzaku'), ('Seiryu'),
+									   ('Titania'), ('Innocence'), ('Hades'), ('Ruby Weapon'), ('Seat of Sacrifice'),
+									   ('A4S'), ('A12S'), ('O4S'), ('O8S'),('O12S'), ('E4S'), ('E8S'),
+									   ('Rathalos'), ('Incitatus (Faux Hollows)');
+INSERT INTO users (username) VALUES ('Sol Faye');
 INSERT INTO user_mounts (user_id, mount_id) VALUES (1, 1);
 
 SELECT * FROM mounts;
