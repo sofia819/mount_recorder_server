@@ -11,7 +11,7 @@ const createUser = (username) =>
   ]);
 
 const updateUserById = (username, id) =>
-  pool.result("UPDATE users SET username = $1 WHERE user_id = $2", [
+  pool.result("UPDATE users SET username = $1 WHERE user_id = $2 RETURNING *", [
     username,
     id,
   ]);

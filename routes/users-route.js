@@ -37,7 +37,7 @@ router
   .post((req, res) =>
     usersService
       .deleteUserById(req)
-      .then(response => res.json({ response }))
+      .then((response) => res.json({ response }))
       .catch((err) => {
         console.error(err.message);
         res.json({ response: false });
@@ -46,7 +46,7 @@ router
   .put((req, res) =>
     usersService
       .updateUserById(req)
-      .then((users) => res.json(users.rowCount))
+      .then((users) => res.json(users.rows[0]))
       .catch((err) => {
         console.error(err.message);
         res.json({ response: false });

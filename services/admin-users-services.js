@@ -3,7 +3,8 @@ const bcrypt = require("bcrypt");
 
 const createAdminUser = async (req) => {
   const hashedPassword = await bcrypt.hash(req.body.password, 10);
-  return dataAccess.createAdminUser(req.body.username, hashedPassword);
+  dataAccess.createAdminUser(req.body.username, hashedPassword);
+  return true;
 };
 
 const loginAdminUser = async (req) => {
