@@ -8,32 +8,29 @@ router.route("").get((req, res) =>
     .then((allUsersMounts) => res.json(allUsersMounts))
     .catch((err) => {
       console.error(err.message);
-      res.json(false);
+      res.json({ response: false });
     })
 );
 
 router
   .route("/:id")
-  .get((req, res) => {
-    const { id } = req.params;
+  .get((req, res) =>
     userMountsServices
-      .getUserMountsById(id)
+      .getUserMountsById(req)
       .then((userMounts) => res.json(userMounts))
       .catch((err) => {
         console.error(err.message);
-        res.json(false);
-      });
-  })
-  .put((req, res) => {
-    const { id } = req.params;
-    const { mountIds } = req.body;
+        res.json({ response: false });
+      })
+  )
+  .put((req, res) =>
     userMountsServices
-      .updateUserMountsById(id, mountIds)
-      .then(() => res.json(true))
+      .updateUserMountsById(req)
+      .then(() => res.json({ response: true }))
       .catch((err) => {
         console.error(err.message);
-        res.json(false);
-      });
-  });
+        res.json({ response: false });
+      })
+  );
 
 module.exports = router;

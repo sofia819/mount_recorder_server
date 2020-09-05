@@ -9,6 +9,7 @@ CREATE DATABASE mount_recorder;
 DROP TABLE IF EXISTS user_mounts;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS mounts;
+DROP TABLE IF EXISTS admin_users;
 
 CREATE TABLE mounts (
 	mount_id SERIAL PRIMARY KEY,
@@ -26,6 +27,12 @@ CREATE TABLE user_mounts (
     CONSTRAINT pk_user_mount UNIQUE(user_id, mount_id),
 	CONSTRAINT fk_user FOREIGN KEY(user_id) REFERENCES users(user_id),
 	CONSTRAINT fk_mount FOREIGN KEY(mount_id) REFERENCES mounts(mount_id)
+);
+
+CREATE TABLE admin_users (
+	user_id SERIAL PRIMARY KEY,
+    username VARCHAR(200) NOT NULL UNIQUE,
+	hashed_password VARCHAR(200) NOT NULL 
 );
 
 INSERT INTO mounts (mount_name) VALUES ('Nightmare'), ('Garuda'), ('Titan'), ('Ifrit'), ('Leviathan'), ('Ramuh'), ('Shiva'),

@@ -1,8 +1,8 @@
 const pool = require("./db");
 const pgp = require("pg-promise")();
 
-const getAllUserMounts = async () =>
-  await pool.query(
+const getAllUserMounts = () =>
+  pool.query(
     `
       SELECT u.user_id, u.username, m.mount_id, m.mount_name, u.user_id = um.user_id AS owned
       FROM users u
@@ -12,8 +12,8 @@ const getAllUserMounts = async () =>
       `
   );
 
-const getUserMountsById = async (id) =>
-  await pool.query(
+const getUserMountsById = (id) =>
+  pool.query(
     `
     SELECT u.user_id, u.username, m.mount_id, m.mount_name, u.user_id = um.user_id AS owned
     FROM users u
@@ -25,7 +25,7 @@ const getUserMountsById = async (id) =>
     [id]
   );
 
-const updateUserMountsById = async (userId, mountIds) => {
+const updateUserMountsById = (userId, mountIds) => {
   // our set of columns, to be created only once (statically), and then reused,
   // to let it cache up its formatting templates for high performance:
   if (mountIds.length > 0) {
@@ -44,9 +44,9 @@ const updateUserMountsById = async (userId, mountIds) => {
       " ON CONFLICT(user_id, mount_id) DO NOTHING";
 
     // executing the query:
-    await pool.none(query);
+    pool.none(query);
 
-    await pool.none(
+    pool.none(
       `
       DELETE FROM user_mounts
       WHERE user_id = $1 AND
@@ -55,7 +55,7 @@ const updateUserMountsById = async (userId, mountIds) => {
       [userId, mountIds]
     );
   } else {
-    await pool.none(
+    pool.none(
       `
         DELETE FROM user_mounts
         WHERE user_id = $1

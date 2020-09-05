@@ -10,52 +10,47 @@ router
       .then((allUsers) => res.json(allUsers))
       .catch((err) => {
         console.error(err.message);
-        res.json(false);
+        res.json({ response: false });
       })
   )
-  .post((req, res) => {
-    const { username } = req.body;
+  .post((req, res) =>
     usersService
-      .createUser(username)
+      .createUser(req)
       .then((newUser) => res.json(newUser[0]))
       .catch((err) => {
         console.error(err.message);
-        res.json(false);
-      });
-  });
+        res.json({ response: false });
+      })
+  );
 
 router
   .route("/:id")
-  .get((req, res) => {
-    const { id } = req.params;
+  .get((req, res) =>
     usersService
-      .getUserById(id)
+      .getUserById(req)
       .then((user) => res.json(user[0]))
       .catch((err) => {
         console.error(err.message);
-        res.json(false);
-      });
-  })
-  .delete((req, res) => {
-    const { id } = req.params;
+        res.json({ response: false });
+      })
+  )
+  .post((req, res) =>
     usersService
-      .deleteUserById(id)
-      .then(() => res.json(true))
+      .deleteUserById(req)
+      .then(response => res.json({ response }))
       .catch((err) => {
         console.error(err.message);
-        res.json(false);
-      });
-  })
-  .put((req, res) => {
-    const { id } = req.params;
-    const { username } = req.body;
+        res.json({ response: false });
+      })
+  )
+  .put((req, res) =>
     usersService
-      .updateUserById(username, id)
+      .updateUserById(req)
       .then((users) => res.json(users.rowCount))
       .catch((err) => {
         console.error(err.message);
-        res.json(false);
-      });
-  });
+        res.json({ response: false });
+      })
+  );
 
 module.exports = router;

@@ -11,6 +11,7 @@ app.use(express.json());
 app.use("/users", require("./routes/users-route"));
 app.use("/mounts", require("./routes/mounts-route"));
 app.use("/user-mounts", require("./routes/user-mounts-route"));
+app.use("/admin-users", require("./routes/admin-users-route"));
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => 

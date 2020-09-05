@@ -10,52 +10,47 @@ router
       .then((allMounts) => res.json(allMounts))
       .catch((err) => {
         console.error(err.message);
-        res.json(false);
+        res.json({ response: false });
       })
   )
-  .post((req, res) => {
-    const { mountName } = req.body;
+  .post((req, res) =>
     mountsServices
-      .createMount(mountName)
+      .createMount(req)
       .then((newMount) => res.json(newMount[0]))
       .catch((err) => {
         console.error(err.message);
-        res.json(false);
-      });
-  });
+        res.json({ response: false });
+      })
+  );
 
 router
   .route("/:id")
-  .get((req, res) => {
-    const { id } = req.params;
+  .get((req, res) =>
     mountsServices
-      .getMountById(id)
+      .getMountById(req)
       .then((mount) => res.json(mount[0]))
       .catch((err) => {
         console.error(err.message);
-        res.json(false);
-      });
-  })
-  .delete((req, res) => {
-    const { id } = req.params;
+        res.json({ response: false });
+      })
+  )
+  .delete((req, res) =>
     mountsServices
-      .deleteMountById(id)
+      .deleteMountById(req)
       .then(() => res.json(true))
       .catch((err) => {
         console.error(err.message);
-        res.json(false);
-      });
-  })
-  .put((req, res) => {
-    const { id } = req.params;
-    const { mountName } = req.body;
+        res.json({ response: false });
+      })
+  )
+  .put((req, res) =>
     mountsServices
-      .updateMountById(mountName, id)
+      .updateMountById(req)
       .then((mounts) => res.json(mounts.rowCount))
       .catch((err) => {
         console.error(err.message);
-        res.json(false);
-      });
-  });
+        res.json({ response: false });
+      })
+  );
 
 module.exports = router;

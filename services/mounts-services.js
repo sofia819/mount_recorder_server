@@ -1,15 +1,18 @@
 const dataAccess = require("../data-access/mounts-data-access");
 
-const getAllMounts = () => dataAccess.getAllMounts();
+const getAllMounts = async () => await dataAccess.getAllMounts();
 
-const getMountById = (id) => dataAccess.getMountById(id);
+const getMountById = async (req) =>
+  await dataAccess.getMountById(req.params.id);
 
-const createMount = (mountName) => dataAccess.createMount(mountName);
+const createMount = async (req) =>
+  await dataAccess.createMount(req.body.mountName);
 
-const updateMountById = (mountName, id) =>
-  dataAccess.updateMountById(mountName, id);
+const updateMountById = async (req) =>
+  await dataAccess.updateMountById(req.body.mountName, req.params.id);
 
-const deleteMountById = (id) => dataAccess.deleteMountById(id);
+const deleteMountById = async (req) =>
+  await dataAccess.deleteMountById(req.params.id);
 
 module.exports = {
   getAllMounts,
