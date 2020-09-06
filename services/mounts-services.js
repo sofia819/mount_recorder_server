@@ -1,4 +1,5 @@
 const dataAccess = require("../data-access/mounts-data-access");
+const adminUsersService = require("../services/admin-users-services");
 
 const getAllMounts = async () => await dataAccess.getAllMounts();
 
@@ -11,8 +12,13 @@ const createMount = async (req) =>
 const updateMountById = async (req) =>
   await dataAccess.updateMountById(req.body.mountName, req.params.id);
 
-const deleteMountById = async (req) =>
-  await dataAccess.deleteMountById(req.params.id);
+const deleteMountById = async (req) => {
+  if (await adminUsersService.loginAdminUser(req)) {
+    await dataAccess.deleteMountById(req.params.id);
+    return true;
+  }
+  return false;
+};
 
 module.exports = {
   getAllMounts,
