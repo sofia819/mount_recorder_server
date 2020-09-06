@@ -2,7 +2,7 @@ const pool = require("./db");
 
 const createAdminUser = (username, hashedPassword) =>
   pool.query(
-    "INSERT INTO admin_users (username, hashed_password) VALUES ($1, $2)",
+    "INSERT INTO admin_users (username, hashed_password) VALUES ($1, $2) ON CONFLICT DO NOTHING",
     [username, hashedPassword]
   );
 
