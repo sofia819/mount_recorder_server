@@ -4,7 +4,7 @@ const pgp = require("pg-promise")();
 const getAllUserMounts = () =>
   pool.query(
     `
-      SELECT u.user_id, u.username, m.mount_id, m.mount_name, u.user_id = um.user_id AS owned
+      SELECT u.user_id, u.username, m.mount_id, m.mount_name, m.expansion, u.user_id = um.user_id AS owned
       FROM users u
       CROSS JOIN mounts m
       LEFT JOIN user_mounts um
@@ -15,7 +15,7 @@ const getAllUserMounts = () =>
 const getUserMountsById = (id) =>
   pool.query(
     `
-    SELECT u.user_id, u.username, m.mount_id, m.mount_name, u.user_id = um.user_id AS owned
+    SELECT u.user_id, u.username, m.mount_id, m.mount_name, m.expansion, u.user_id = um.user_id AS owned
     FROM users u
     CROSS JOIN mounts m
     LEFT JOIN user_mounts um

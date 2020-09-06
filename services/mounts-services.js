@@ -7,10 +7,14 @@ const getMountById = async (req) =>
   await dataAccess.getMountById(req.params.id);
 
 const createMount = async (req) =>
-  await dataAccess.createMount(req.body.mountName);
+  await dataAccess.createMount(req.body.mountName, req.body.expansion);
 
 const updateMountById = async (req) =>
-  await dataAccess.updateMountById(req.body.mountName, req.params.id);
+  await dataAccess.updateMountById(
+    req.body.mountName,
+    req.body.expansion,
+    req.params.id
+  );
 
 const deleteMountById = async (req) => {
   if (await adminUsersService.loginAdminUser(req)) {

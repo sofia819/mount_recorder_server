@@ -5,16 +5,17 @@ const getAllMounts = () => pool.query("SELECT * FROM mounts");
 const getMountById = (id) =>
   pool.query("SELECT * FROM mounts WHERE mount_id = $1", [id]);
 
-const createMount = (mountName) =>
-  pool.query("INSERT INTO mounts (mount_name) VALUES ($1) RETURNING *", [
-    mountName,
-  ]);
+const createMount = (mountName, expansion) =>
+  pool.query(
+    "INSERT INTO mounts (mount_name, expansion) VALUES ($1, $2) RETURNING *",
+    [mountName, expansion]
+  );
 
-const updateMountById = (mountName, id) =>
-  pool.result("UPDATE mounts SET mount_name = $1 WHERE mount_id = $2", [
-    mountName,
-    id,
-  ]);
+const updateMountById = (mountName, expansion, id) =>
+  pool.result(
+    "UPDATE mounts SET mount_name = $1, expansion = $2 WHERE mount_id = $3",
+    [mountName, expansion, id]
+  );
 
 const deleteMountById = (id) => {
   pool
