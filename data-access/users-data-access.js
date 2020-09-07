@@ -6,15 +6,16 @@ const getUserById = (id) =>
   pool.query("SELECT * FROM users WHERE user_id = $1", [id]);
 
 const createUser = (username) =>
-  pool.query("INSERT INTO users (username) VALUES ($1) RETURNING *", [
-    username,
-  ]);
+  pool.query(
+    "INSERT INTO users (username) VALUES ($1) ON CONFLICT DO NOTHING RETURNING *",
+    [username]
+  );
 
 const updateUserById = (username, id) =>
-  pool.result("UPDATE users SET username = $1 WHERE user_id = $2 RETURNING *", [
-    username,
-    id,
-  ]);
+  pool.result(
+    "UPDATE users SET username = $1 WHERE user_id = $2 AND username NOT IN (SELECT username FROM users) RETURNING *",
+    [username, id]
+  );
 
 const deleteUserById = async (id) =>
   pool

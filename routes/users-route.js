@@ -16,7 +16,7 @@ router
   .post((req, res) =>
     usersService
       .createUser(req)
-      .then((newUser) => res.json(newUser[0]))
+      .then((newUser) => res.json(newUser))
       .catch((err) => {
         console.error(err.message);
         res.json({ response: false });
@@ -46,7 +46,7 @@ router
   .put((req, res) =>
     usersService
       .updateUserById(req)
-      .then((users) => res.json(users.rows[0]))
+      .then((users) => res.json(users.rows))
       .catch((err) => {
         console.error(err.message);
         res.json({ response: false });
