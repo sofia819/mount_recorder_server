@@ -13,8 +13,8 @@ const createUser = (username) =>
 
 const updateUserById = (username, id) =>
   pool.result(
-    "UPDATE users SET username = $1 WHERE user_id = $2 AND username NOT IN (SELECT username FROM users) RETURNING *",
-    [username, id]
+    "UPDATE users SET username = $1 WHERE user_id = $2 AND NOT EXISTS (SELECT username FROM users WHERE username = $3) RETURNING *",
+    [username, id, username]
   );
 
 const deleteUserById = async (id) =>
