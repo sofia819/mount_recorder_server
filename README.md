@@ -25,17 +25,20 @@ Language
 
 - JavaScript
 
-Framework
-
-- express
-
 Environment
 
-- NodeJS
+- Node.js
+
+Framework
+
+- Express.js
 
 Libraries
 
+- bcrypt
+- dotenv
 - cors
+- pg-promise
 
 ## Setup
 
@@ -43,4 +46,4 @@ To run this project, install it locally using npm:
 
 1. Clone the repository
 2. Install dependencies using `npm install`
-3. Start the server using `nodemon index`
+3. Start the server using `node index`
