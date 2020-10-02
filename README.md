@@ -13,13 +13,10 @@ Created by Web Static Initiative members:
 
 ## General info
 
-- This project is the back-end for the mount recorder application.
-- It stores users, mounts, and which mounts users own.
-- It returns data when recieving SQL statements.
+- The project is the back-end API used in [Mount Recorder Client](https://github.com/sofia819/mount_recorder_client).
+- On each API request from the client, the corresponding operations are executed and data is returned when necessary.
 
 ## Technologies
-
-Project is created with:
 
 Language
 
@@ -27,18 +24,18 @@ Language
 
 Environment
 
-- Node.js
+- [Node.js](https://nodejs.org/en/)
 
 Framework
 
-- Express.js
+- [Express.js](https://expressjs.com/)
 
 Libraries
 
-- bcrypt
-- dotenv
-- cors
-- pg-promise
+- [bcrypt](https://github.com/kelektiv/node.bcrypt.js)
+- [dotenv](https://github.com/motdotla/dotenv)
+- [cors](https://github.com/expressjs/cors)
+- [pg-promise](https://github.com/vitaly-t/pg-promise)
 
 ## Setup
 
