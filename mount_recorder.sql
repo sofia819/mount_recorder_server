@@ -44,11 +44,10 @@ INSERT INTO mounts (mount_name, expansion) VALUES
 	('A4S', 3), ('A12S', 3), ('O4S', 4), ('O8S', 4),('O12S', 4), ('E4S', 5), ('E8S', 5),
 	('Rathalos', 0), ('Faux Hollows', 0);
 INSERT INTO users (username) VALUES
-	('AAAARYN'), ('Aeon Velonica'), ('Albel Noxs'), ('Aluna Papaya'), ('Angora Khilo'), ('Artemis Locke'),
-	('Aster Fuusaro'), ('Caedryn Leon'), ('Celicia Greene'), ('Coulier Armnai'), ('Ellivrid Merlain'),
-	('Hida Silverlight'), ('Koh''a Relanah'), ('LenZ Chu'), ('Lu Anna'), ('Moonsnow Leon'), ('Morgana Raha'),
-	('Procene Camilleri'), ('Raven Foxshroud'), ('Rheon Sunh'), ('Sol Faye'), ('Sora Hoshi'), ('Trinity Bajhiri'),
-	('Garrth Karsch');
+	('Albel Noxs'), ('Artemis Locke'), ('Caedryn Leon'), ('Coulier Armnai'), ('Ellivrid Merlain'),
+	('Hida Silverlight'), ('Koh''a Relanah'), ('LenZ Chu'), ('Lu Anna'), ('Moonsnow Leon'),
+	('Morgana Raha'), ('Procene Camilleri'), ('Raven Foxshroud'), ('Rheon Sunh'), ('Sol Faye'),
+	('Sora Hoshi'), ('Trinity Bajhiri'), ('Garrth Karsch');
 INSERT INTO user_mounts (user_id, mount_id) VALUES (1, 1), (2, 2), (3, 3);
 
 SELECT * FROM mounts;
@@ -60,3 +59,10 @@ FROM users u
 CROSS JOIN mounts m
 LEFT JOIN user_mounts um
 	ON u.user_id = um.user_id AND m.mount_id = um.mount_id;
+
+SELECT u.user_id, u.username, m.mount_id, m.mount_name, m.expansion, u.user_id = um.user_id AS owned
+    FROM users u
+    CROSS JOIN mounts m
+    LEFT JOIN user_mounts um
+    ON u.user_id = um.user_id AND m.mount_id = um.mount_id
+WHERE m.mount_id = 1;

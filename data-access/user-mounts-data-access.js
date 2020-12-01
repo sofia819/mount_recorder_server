@@ -1,5 +1,5 @@
-const pool = require("./db");
-const pgp = require("pg-promise")();
+const pool = require('./db');
+const pgp = require('pg-promise')();
 
 const getAllUserMounts = () =>
   pool.query(
@@ -12,7 +12,7 @@ const getAllUserMounts = () =>
       `
   );
 
-const getUserMountsById = (id) =>
+const getUserMountsByUserId = (id) =>
   pool.query(
     `
     SELECT u.user_id, u.username, m.mount_id, m.mount_name, m.expansion, u.user_id = um.user_id AS owned
@@ -25,12 +25,25 @@ const getUserMountsById = (id) =>
     [id]
   );
 
+const getUserMountsByMountId = (id) =>
+  pool.query(
+    `
+    SELECT u.user_id, u.username, m.mount_id, m.mount_name, m.expansion, u.user_id = um.user_id AS owned
+    FROM users u
+    CROSS JOIN mounts m
+    LEFT JOIN user_mounts um
+    ON u.user_id = um.user_id AND m.mount_id = um.mount_id
+    WHERE m.mount_id = $1
+    `,
+    [id]
+  );
+
 const updateUserMountsById = (userId, mountIds) => {
   // our set of columns, to be created only once (statically), and then reused,
   // to let it cache up its formatting templates for high performance:
   if (mountIds.length > 0) {
-    const cs = new pgp.helpers.ColumnSet(["user_id", "mount_id"], {
-      table: "user_mounts",
+    const cs = new pgp.helpers.ColumnSet(['user_id', 'mount_id'], {
+      table: 'user_mounts',
     });
 
     // data input values:
@@ -41,7 +54,7 @@ const updateUserMountsById = (userId, mountIds) => {
     // generating a multi-row insert query:
     const query =
       pgp.helpers.insert(values, cs) +
-      " ON CONFLICT(user_id, mount_id) DO NOTHING";
+      ' ON CONFLICT(user_id, mount_id) DO NOTHING';
 
     // executing the query:
     pool.none(query);
@@ -67,6 +80,7 @@ const updateUserMountsById = (userId, mountIds) => {
 
 module.exports = {
   getAllUserMounts,
-  getUserMountsById,
+  getUserMountsByUserId,
+  getUserMountsByMountId,
   updateUserMountsById,
 };
