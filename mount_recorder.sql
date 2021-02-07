@@ -42,7 +42,7 @@ INSERT INTO mounts (mount_name, expansion) VALUES
 	('Susano', 4), ('Lakshmi', 4), ('Shinryu', 4), ('Tsukuyomi', 4), ('Byakko', 4), ('Suzaku', 4), ('Seiryu', 4),
 	('Titania', 5), ('Innocence', 5), ('Hades', 5), ('Ruby Weapon', 5), ('Warrior of Light', 5),
 	('A4S', 3), ('A12S', 3), ('O4S', 4), ('O8S', 4),('O12S', 4), ('E4S', 5), ('E8S', 5),
-	('Rathalos', 0), ('Faux Hollows', 0);
+	('Rathalos', 0), ('Incitatus', 0), ('Emerald Weapon', 5), ('E12S', 5), ('Construct VI-S', 0);
 INSERT INTO users (username) VALUES
 	('Albel Noxs'), ('Artemis Locke'), ('Caedryn Leon'), ('Coulier Armnai'), ('Ellivrid Merlain'),
 	('Hida Silverlight'), ('Koh''a Relanah'), ('LenZ Chu'), ('Lu Anna'), ('Moonsnow Leon'),

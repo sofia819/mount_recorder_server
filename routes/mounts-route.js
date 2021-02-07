@@ -1,9 +1,9 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const mountsServices = require("../services/mounts-services");
+const mountsServices = require('../services/mounts-services');
 
 router
-  .route("")
+  .route('')
   .get((req, res) =>
     mountsServices
       .getAllMounts()
@@ -24,7 +24,7 @@ router
   );
 
 router
-  .route("/:id")
+  .route('/:id')
   .get((req, res) =>
     mountsServices
       .getMountById(req)

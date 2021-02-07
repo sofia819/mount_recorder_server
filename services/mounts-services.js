@@ -1,5 +1,5 @@
-const dataAccess = require("../data-access/mounts-data-access");
-const adminUsersService = require("../services/admin-users-services");
+const dataAccess = require('../data-access/mounts-data-access');
+const adminUsersService = require('../services/admin-users-services');
 
 const getAllMounts = async () => await dataAccess.getAllMounts();
 
@@ -7,12 +7,17 @@ const getMountById = async (req) =>
   await dataAccess.getMountById(req.params.id);
 
 const createMount = async (req) =>
-  await dataAccess.createMount(req.body.mountName, req.body.expansion);
+  await dataAccess.createMount(
+    req.body.mountName,
+    req.body.expansion,
+    req.body.image_url
+  );
 
 const updateMountById = async (req) =>
   await dataAccess.updateMountById(
     req.body.mountName,
     req.body.expansion,
+    req.body.image_url,
     req.params.id
   );
 
