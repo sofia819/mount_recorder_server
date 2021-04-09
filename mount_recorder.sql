@@ -36,13 +36,45 @@ CREATE TABLE admin_users (
 	hashed_password VARCHAR(200) NOT NULL 
 );
 
-INSERT INTO mounts (mount_name, expansion) VALUES
-	('Nightmare', 2), ('Garuda', 2), ('Titan', 2), ('Ifrit', 2), ('Leviathan', 2), ('Ramuh', 2), ('Shiva', 2),
-	('Bismarck', 3), ('Ravana', 3), ('Thordan', 3), ('Nidhogg', 3), ('Sephirot', 3), ('Sophia', 3), ('Zurvan', 3),
-	('Susano', 4), ('Lakshmi', 4), ('Shinryu', 4), ('Tsukuyomi', 4), ('Byakko', 4), ('Suzaku', 4), ('Seiryu', 4),
-	('Titania', 5), ('Innocence', 5), ('Hades', 5), ('Ruby Weapon', 5), ('Warrior of Light', 5),
-	('A4S', 3), ('A12S', 3), ('O4S', 4), ('O8S', 4),('O12S', 4), ('E4S', 5), ('E8S', 5),
-	('Rathalos', 0), ('Incitatus', 0), ('Emerald Weapon', 5), ('E12S', 5), ('Construct VI-S', 0);
+INSERT INTO mounts (mount_name, expansion, image_url) VALUES 
+('A4S', 3, 'https://i.imgur.com/6dUMsOl.png'),
+('Bismarck', 3, 'https://i.imgur.com/ZvhQez9.png'),
+('Byakko', 4, 'https://i.imgur.com/eeRA9JC.png'),
+('E12S', 5, 'https://i.imgur.com/KQkwdv2.png'),
+('E4S', 5, 'https://i.imgur.com/FQqj624.png'),
+('E8S', 5, 'https://i.imgur.com/xfxnX7n.png'),
+('Emerald Weapon', 5, 'https://i.imgur.com/LRpHIGT.png'),
+('Garuda', 2, 'https://i.imgur.com/XvEPvxU.png'),
+('Hades', 5, 'https://i.imgur.com/J1bhaAT.png'),
+('Ifrit', 2, 'https://i.imgur.com/6Edepkw.png'),
+('Innocence', 5, 'https://i.imgur.com/PPtDF8l.png'),
+('Lakshmi', 4, 'https://i.imgur.com/LK6K5Id.png'),
+('Leviathan', 2, 'https://i.imgur.com/w44BOQu.png'),
+('Nidhogg', 3, 'https://i.imgur.com/yWyWFf5.png'),
+('Nightmare', 2, 'https://i.imgur.com/CND6Wgo.png'),
+('A12S', 3, 'https://i.imgur.com/hFBBmFn.png'),
+('O12S', 4, 'https://i.imgur.com/bMNz9JF.png'),
+('O4S', 4, 'https://i.imgur.com/E83ISh2.png'),
+('O8S', 4, 'https://i.imgur.com/h9zpjvM.png'),
+('Ramuh', 2, 'https://i.imgur.com/Tsb8Ykx.png'),
+('Rathalos', 0, 'https://i.imgur.com/2D14ixp.png'),
+('Ravana', 3, 'https://i.imgur.com/uQY5sy7.png'),
+('Ruby Weapon', 5, 'https://i.imgur.com/LMtXGXQ.png'),
+('Seiryu', 4, 'https://i.imgur.com/vllxdby.png'),
+('Sephirot', 3, 'https://i.imgur.com/uAHn1LF.png'),
+('Shinryu', 4, 'https://i.imgur.com/bjVPV9P.png'),
+('Shiva', 2, 'https://i.imgur.com/3aY0B6W.png'),
+('Sophia', 3, 'https://i.imgur.com/TxNnXp7.png'),
+('Susano', 4, 'https://i.imgur.com/EBdfDXC.png'),
+('Suzaku', 4, 'https://i.imgur.com/D8w4U2I.png'),
+('Thordan', 3, 'https://i.imgur.com/DMI22Ve.png'),
+('Titan', 2, 'https://i.imgur.com/SHXnhbD.png'),
+('Titania', 5, 'https://i.imgur.com/lquVxpm.png'),
+('Tsukuyomi', 4, 'https://i.imgur.com/ueO5V9T.png'),
+('Warrior of Light', 5, 'https://i.imgur.com/iEh5MWb.png'),
+('Zurvan', 3, 'https://i.imgur.com/3GD0xoa.png'),
+('Diamond Weapon', 5, 'https://i.imgur.com/WnJtugj.jpg');
+
 INSERT INTO users (username) VALUES
 	('Albel Noxs'), ('Artemis Locke'), ('Caedryn Leon'), ('Coulier Armnai'), ('Ellivrid Merlain'),
 	('Hida Silverlight'), ('Koh''a Relanah'), ('LenZ Chu'), ('Lu Anna'), ('Moonsnow Leon'),
