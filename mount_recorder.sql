@@ -14,7 +14,8 @@ DROP TABLE IF EXISTS admin_users;
 CREATE TABLE mounts (
 	mount_id SERIAL PRIMARY KEY,
     mount_name VARCHAR(200) NOT NULL UNIQUE,
-	expansion INT NOT NULL
+	expansion INT NOT NULL,
+	image_url VARCHAR(500)
 );
 
 CREATE TABLE users (
